@@ -1,0 +1,31 @@
+body{
+    padding: 150px;
+}
+.login-style{
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 10px;
+    padding: 30px;
+}
+.deposit-custom{
+    color: white;
+    background-color: #5f4fc8;
+    padding: 20px;
+    border-radius: 20px;
+}
+.withdraw-custom{
+    color: white;
+    background-color: #f19671;
+    padding: 20px;
+    border-radius: 20px;
+}
+.balance-custom{
+    color: white;
+    background-color: #f09b02;
+    padding: 20px;
+    border-radius: 20px;
+}
+.calculat-part{
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 10px;
+    padding: 30px;
+}
