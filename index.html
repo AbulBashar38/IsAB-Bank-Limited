@@ -10,7 +10,7 @@
 <body>
     <section id="login-section">
         <div class="login-style">
-            <h1 class="text-center">IsAB Bank Limited</h1>
+            <h1 class="text-center head-text">IsAB Bank Limited</h1>
             <div>
                 <h3>Login</h3>
                 <input type="email" placeholder="Enter Your Email here" class="form-control">
@@ -65,37 +65,61 @@
     </section>
 
     <script>
+
         // login button event handler
+
         document.getElementById('login-btn').addEventListener('click', function(){
             document.getElementById('login-section').style.display = 'none'
             document.getElementById('calculation-section').style.display = 'block'
         })
+
+        // Deposit button event handler
+
         document.getElementById('deposit-btn').addEventListener('click', function(){
-            var depositValue = document.getElementById('deposit-value-capture').value;
-            var depositCaptureConvertValue = parseFloat(depositValue);
-            var depositCurrentValue = document.getElementById('deposit-current-value').innerText;
-            var depositCurrentConvertValue = parseFloat(depositCurrentValue);
-            var totalDeposit = depositCurrentConvertValue + depositCaptureConvertValue;
-            var balanceValue = document.getElementById('balance-current-value').innerText;
-            var balanceConvertCurrentValue = parseFloat(balanceValue);
-            var totalBalance = balanceConvertCurrentValue + depositCaptureConvertValue;
-            document.getElementById('balance-current-value').innerText = totalBalance;
-            document.getElementById('deposit-current-value').innerText = totalDeposit;
-            document.getElementById('deposit-value-capture').value = '';
+            var depositCaptureConvertValue = inputValue("deposit-value-capture");
+            totalDepositAndWithdraw("deposit-value-capture",  "deposit-current-value")
+            totalBalanceAmount(depositCaptureConvertValue)
         })
+
+        // Withdraw Button even handler
+
         document.getElementById('withdraw-btn').addEventListener('click', function(){
-            var withdrawCaptureValue = document.getElementById('withdraw-value-capture').value;
-            var withdrawCaptureConvertValue = parseFloat(withdrawCaptureValue);
-            var withdrawCurrentValue = document.getElementById('withdraw-currant-value').innerText;
-            var withdrawConvertCurrentValue = parseFloat(withdrawCurrentValue);
-            var totalWithdraw = withdrawCaptureConvertValue + withdrawConvertCurrentValue;
+            var captureConvertValue = inputValue("withdraw-value-capture");
+            var withdrawBalance = captureConvertValue * -1;
+            totalDepositAndWithdraw("withdraw-value-capture", "withdraw-currant-value")
+            totalBalanceAmount(withdrawBalance);
+            
+        })
+
+        // get value from input button
+
+        function inputValue(captureId) {
+            var captureValue = document.getElementById(captureId).value;
+            var captureConvertValue = parseFloat(captureValue);
+            return captureConvertValue;
+        }
+        // show calculate value on the deposit and withdraw section
+
+        function totalDepositAndWithdraw(captureId, currentId) {
+            var captureConvertValue = inputValue(captureId);
+            
+            var currentValue = document.getElementById(currentId).innerText;
+            var convertCurrentValue = parseFloat(currentValue);
+
+            var totalDepositOrWithdraw = captureConvertValue + convertCurrentValue;
+
+            document.getElementById(currentId).innerText = totalDepositOrWithdraw;
+
+            document.getElementById(captureId).value = '';
+        }
+        // show calculate value in the balance section
+
+        function totalBalanceAmount(CaptureConvertValue) {
             var balanceCurrentValue = document.getElementById('balance-current-value').innerText;
             var balanceConvertCurrentValue = parseFloat(balanceCurrentValue);
-            var totalBalance = balanceConvertCurrentValue + withdrawCaptureConvertValue * -1;
+            var totalBalance = balanceConvertCurrentValue + CaptureConvertValue;
             document.getElementById('balance-current-value').innerText = totalBalance;
-            document.getElementById('withdraw-currant-value').innerText = totalWithdraw;
-            document.getElementById('withdraw-value-capture').value = '';
-        })
+        }
         
     </script>
 </body>
