@@ -24,8 +24,14 @@ body{
     padding: 20px;
     border-radius: 20px;
 }
-.calculat-part{
+.calculat-part-style{
     box-shadow: 5px 5px 10px gray;
     border-radius: 10px;
     padding: 30px;
+}
+.calculat-part{
+    margin-top: 60px;
+}
+#calculation-section{
+    display: none;
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section>
+    <section id="login-section">
         <div class="login-style">
             <h1 class="text-center">IsAB Bank Limited</h1>
             <div>
@@ -17,51 +17,86 @@
                 <br>
                 <input type="password" placeholder="Enter you password"class="form-control">
                 <br>
-                <button class="btn btn-success">Enter</button>
+                <button class="btn btn-success" id="login-btn">Enter</button>
             </div>
         </div>
     </section>
-    <section>
+    <section id="calculation-section">
         <div class="row">
             <div class="col-md-4">
                 <div class="deposit-custom">
                     <h4>Deposit</h4>
-                    <h1>$ 00</h1>
+                    <h1>$ <span id="deposit-current-value">00</span></h1>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="withdraw-custom">
                     <h4>Withdraw</h4>
-                    <h1>$ 00</h1>
+                    <h1>$ <span id="withdraw-currant-value">00</span></h1>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="balance-custom">
                     <h4>Balance</h4>
-                    <h1>$ 00</h1>
+                    <h1>$ <span id="balance-current-value">1250</span></h1>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row calculat-part">
             <div class="col-md-6">
-                <div class="calculat-part">
+                <div class="calculat-part-style">
                     <h3>Deposit</h3>
                     <br>
-                    <input type="text" placeholder="$ Enter you deposit Amount" class="form-control">
+                    <input type="text" placeholder="$ Enter you deposit Amount" class="form-control" id="deposit-value-capture">
                     <br>
-                    <button class="btn btn-success">Deposit</button>
+                    <button id="deposit-btn" class="btn btn-success">Deposit</button>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="calculat-part">
-                    <h3>withdraw</h3>
+                <div class="calculat-part-style">
+                    <h3>Withdraw</h3>
                     <br>
-                    <input type="text" placeholder="$ Enter you withdraw Amount" class="form-control">
+                    <input id="withdraw-value-capture" type="text" placeholder="$ Enter you withdraw Amount" class="form-control">
                     <br>
-                    <button class="btn btn-success">Withdraw</button>
+                    <button id="withdraw-btn" class="btn btn-success">Withdraw</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        // login button event handler
+        document.getElementById('login-btn').addEventListener('click', function(){
+            document.getElementById('login-section').style.display = 'none'
+            document.getElementById('calculation-section').style.display = 'block'
+        })
+        document.getElementById('deposit-btn').addEventListener('click', function(){
+            var depositValue = document.getElementById('deposit-value-capture').value;
+            var depositCaptureConvertValue = parseFloat(depositValue);
+            var depositCurrentValue = document.getElementById('deposit-current-value').innerText;
+            var depositCurrentConvertValue = parseFloat(depositCurrentValue);
+            var totalDeposit = depositCurrentConvertValue + depositCaptureConvertValue;
+            var balanceValue = document.getElementById('balance-current-value').innerText;
+            var balanceConvertCurrentValue = parseFloat(balanceValue);
+            var totalBalance = balanceConvertCurrentValue + totalDeposit;
+            document.getElementById('balance-current-value').innerText = totalBalance;
+            document.getElementById('deposit-current-value').innerText = totalDeposit;
+            document.getElementById('deposit-value-capture').value = '';
+        })
+        document.getElementById('withdraw-btn').addEventListener('click', function(){
+            var withdrawCaptureValue = document.getElementById('withdraw-value-capture').value;
+            var withdrawCaptureConvertValue = parseFloat(withdrawCaptureValue);
+            var withdrawCurrentValue = document.getElementById('withdraw-currant-value').innerText;
+            var withdrawConvertCurrentValue = parseFloat(withdrawCurrentValue);
+            var totalWithdraw = withdrawCaptureConvertValue + withdrawConvertCurrentValue;
+            var balanceCurrentValue = document.getElementById('balance-current-value').innerText;
+            var balanceConvertCurrentValue = parseFloat(balanceCurrentValue);
+            var totalBalance = balanceConvertCurrentValue + totalWithdraw * -1;
+            document.getElementById('balance-current-value').innerText = totalBalance;
+            document.getElementById('withdraw-currant-value').innerText = totalWithdraw;
+            document.getElementById('withdraw-value-capture').value = '';
+        })
+        
+    </script>
 </body>
 </html>
