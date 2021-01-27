@@ -78,7 +78,7 @@
             var totalDeposit = depositCurrentConvertValue + depositCaptureConvertValue;
             var balanceValue = document.getElementById('balance-current-value').innerText;
             var balanceConvertCurrentValue = parseFloat(balanceValue);
-            var totalBalance = balanceConvertCurrentValue + totalDeposit;
+            var totalBalance = balanceConvertCurrentValue + depositCaptureConvertValue;
             document.getElementById('balance-current-value').innerText = totalBalance;
             document.getElementById('deposit-current-value').innerText = totalDeposit;
             document.getElementById('deposit-value-capture').value = '';
@@ -91,7 +91,7 @@
             var totalWithdraw = withdrawCaptureConvertValue + withdrawConvertCurrentValue;
             var balanceCurrentValue = document.getElementById('balance-current-value').innerText;
             var balanceConvertCurrentValue = parseFloat(balanceCurrentValue);
-            var totalBalance = balanceConvertCurrentValue + totalWithdraw * -1;
+            var totalBalance = balanceConvertCurrentValue + withdrawCaptureConvertValue * -1;
             document.getElementById('balance-current-value').innerText = totalBalance;
             document.getElementById('withdraw-currant-value').innerText = totalWithdraw;
             document.getElementById('withdraw-value-capture').value = '';
